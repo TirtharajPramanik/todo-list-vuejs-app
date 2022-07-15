@@ -1,8 +1,14 @@
-# Todo List - Vuejs App
+# Todo List - Vuejs App PWA
+
+## Demo Pictures
+
+<img alt="mobile create" src="demo/mobile_create.png" width="250px"/>
+
 
 ## Table of Content
 
-- [Todo List - Vuejs App](#todo-list---vuejs-app)
+- [Todo List - Vuejs App PWA](#todo-list---vuejs-app-pwa)
+  - [Demo Pictures](#demo-pictures)
   - [Table of Content](#table-of-content)
   - [Project Structure](#project-structure)
   - [Libraries and Frameworks](#libraries-and-frameworks)
@@ -35,12 +41,12 @@
 
 ## Libraries and Frameworks
 
-| Title       | Description                                                                                                                                                     |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Vuejs       | An approachable, performant and versatile framework for building web user interfac                                                                              |
-| Pinia       | Pinia is a store library for Vue, it allows you to share a state across components/pages.                                                                       |
-| Tailwindcss | A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup. |
-| Flowbite    | Flowbite is an ecosystem built on top of Tailwind CSS including a component library, block sections, a Figma design system and other resources.                 |
+| Title       | Description                                                                                                                                                             |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Vuejs       | An approachable, performant and versatile framework for building web user interfac                                                                                      |
+| Pinia       | Pinia is a store library for Vue, it allows you to share a state across components/pages.                                                                               |
+| Tailwindcss | A utility-first CSS framework packed with classes like `flex`, `pt-4`, `text-center` and `rotate-90` that can be composed to build any design, directly in your markup. |
+| Flowbite    | Flowbite is an ecosystem built on top of Tailwind CSS including a component library, block sections, a Figma design system and other resources.                         |
 
 ## Project setup
 
