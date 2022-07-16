@@ -4,7 +4,6 @@
 
 <img alt="mobile create" src="demo/mobile_create.png" width="250px"/>
 
-
 ## Table of Content
 
 - [Todo List - Vuejs App PWA](#todo-list---vuejs-app-pwa)
@@ -13,13 +12,13 @@
   - [Project Structure](#project-structure)
   - [Libraries and Frameworks](#libraries-and-frameworks)
   - [Project setup](#project-setup)
-    - [Compiles and hot-reloads for development](#compiles-and-hot-reloads-for-development)
-    - [Compiles and minifies for production](#compiles-and-minifies-for-production)
-    - [Customize configuration](#customize-configuration)
+    - [Start development server](#start-development-server)
+    - [Start production server](#start-production-server)
 
 ## Project Structure
 
-.
+```sh
+./
 ├── README.md
 ├── package.json
 ├── postcss.config.js
@@ -31,13 +30,15 @@
 │   ├── registerServiceWorker.ts
 │   ├── router/
 │   ├── shims-vue.d.ts
-│   ├── store/
+│   ├── types/
+│   ├── utils/
 │   └── views/
 ├── tailwind.config.js
 ├── tsconfig.json
 └── yarn.lock
 
-6 directories, 10 files
+7 directories, 10 files
+```
 
 ## Libraries and Frameworks
 
@@ -50,22 +51,24 @@
 
 ## Project setup
 
-```
+```bash
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### Start development server
 
+```bash
+yarn dev
 ```
+
+### Start production server
+
+```bash
 yarn serve
 ```
 
-### Compiles and minifies for production
+<br/>
 
-```
-yarn build
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
+> ```sh
+> Local server will start on `http://localhost:3000`
+> ```
