@@ -1,8 +1,8 @@
 <template>
-	<div class="mx-auto my-5 p-5 flex flex-col space-y-5">
-		<h1 class="text-purple-800 text-lg">{{ todo.title }}</h1>
-		<h3 class="text-purple-800">{{ todo.content }}</h3>
-		<h5 class="text-purple-800">{{ todo.done }}</h5>
+	<div class="container">
+		<h1 class="txt-color text-lg">{{ todo.title }}</h1>
+		<h3 class="txt-color">{{ todo.content }}</h3>
+		<h5 class="txt-color">{{ todo.done }}</h5>
 	</div>
 </template>
 
@@ -20,3 +20,13 @@ export default defineComponent({
 	},
 });
 </script>
+
+<style lang="css" scoped>
+.container {
+	@apply mx-auto my-5 p-5 flex flex-col space-y-5;
+}
+
+.txt-color {
+	@apply text-purple-800 dark:text-white;
+}
+</style>

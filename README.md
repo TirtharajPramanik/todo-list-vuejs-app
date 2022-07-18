@@ -2,7 +2,7 @@
 
 ## Demo Pictures
 
-<img alt="mobile create" src="demo/mobile_create.png" width="250px"/>
+<img alt="mobile create dark" src="demo/mobile_create_dark.png" width="250px"/>
 
 ## Table of Content
 
@@ -12,8 +12,8 @@
   - [Project Structure](#project-structure)
   - [Libraries and Frameworks](#libraries-and-frameworks)
   - [Project setup](#project-setup)
-    - [Start development server](#start-development-server)
-    - [Start production server](#start-production-server)
+        - [Start development server](#start-development-server)
+        - [Start production server](#start-production-server)
 
 ## Project Structure
 
@@ -45,26 +45,31 @@
 | Title       | Description                                                                                                                                                             |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Vuejs       | An approachable, performant and versatile framework for building web user interfac                                                                                      |
-| Pinia       | Pinia is a store library for Vue, it allows you to share a state across components/pages.                                                                               |
 | Tailwindcss | A utility-first CSS framework packed with classes like `flex`, `pt-4`, `text-center` and `rotate-90` that can be composed to build any design, directly in your markup. |
 | Flowbite    | Flowbite is an ecosystem built on top of Tailwind CSS including a component library, block sections, a Figma design system and other resources.                         |
 
 ## Project setup
 
 ```bash
+npm install
+or
 yarn install
 ```
 
-### Start development server
+##### Start development server
 
 ```bash
-yarn dev
+npm run serve
+or
+yarn serve
 ```
 
-### Start production server
+##### Start production server
 
 ```bash
-yarn serve
+npm run build && npm run serve
+or
+yarn build && yarn serve
 ```
 
 <br/>
@@ -72,3 +77,5 @@ yarn serve
 > ```sh
 > Local server will start on `http://localhost:3000`
 > ```
+
+<!-- | Pinia       | Pinia is a store library for Vue, it allows you to share a state across components/pages.                                                                               | -->
