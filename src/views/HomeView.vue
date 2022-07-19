@@ -1,8 +1,8 @@
 <template>
 	<div class="container">
-		<h1 class="txt-color text-lg">{{ todo.title }}</h1>
+		<h2 class="txt-color text-lg">{{ todo.title }}</h2>
 		<h3 class="txt-color">{{ todo.content }}</h3>
-		<h5 class="txt-color">{{ todo.done }}</h5>
+		<h4 class="txt-color">{{ todo.done }}</h4>
 	</div>
 </template>
 

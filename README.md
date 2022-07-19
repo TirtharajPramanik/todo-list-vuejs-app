@@ -1,4 +1,4 @@
-# Todo List - Vuejs App PWA
+# Todo List - Vuejs Offline PWA
 
 ## Demo Pictures
 
@@ -6,7 +6,7 @@
 
 ## Table of Content
 
-- [Todo List - Vuejs App PWA](#todo-list---vuejs-app-pwa)
+- [Todo List - Vuejs Offline PWA](#todo-list---vuejs-offline-pwa)
   - [Demo Pictures](#demo-pictures)
   - [Table of Content](#table-of-content)
   - [Project Structure](#project-structure)
@@ -47,6 +47,7 @@
 | Vuejs       | An approachable, performant and versatile framework for building web user interfac                                                                                      |
 | Tailwindcss | A utility-first CSS framework packed with classes like `flex`, `pt-4`, `text-center` and `rotate-90` that can be composed to build any design, directly in your markup. |
 | Flowbite    | Flowbite is an ecosystem built on top of Tailwind CSS including a component library, block sections, a Figma design system and other resources.                         |
+| Dexie       | A Minimalistic Wrapper for IndexedDB                                                                                                                                    |
 
 ## Project setup
 

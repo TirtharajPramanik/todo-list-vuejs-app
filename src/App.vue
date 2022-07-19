@@ -29,7 +29,7 @@ export default defineComponent({
 
 <style>
 body {
-	@apply bg-slate-50 dark:bg-slate-700;
+	@apply bg-white dark:bg-slate-700;
 }
 
 #app {

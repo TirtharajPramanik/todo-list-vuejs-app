@@ -1,5 +1,5 @@
 <template>
-	<button id="theme-toggle" type="button" class="btn">
+	<button id="theme-toggle" type="button" class="btn" aria-label="toggle theme">
 		<svg
 			id="theme-toggle-dark-icon"
 			class="w-5 h-5"
