@@ -16,6 +16,7 @@ import {
 	UiToggle,
 	UiAlert,
 } from '@/components';
+import { db } from '@/db';
 import { State, Todo } from '@/types';
 import { validateTodo } from '@/utils';
 import { defineComponent } from 'vue';
@@ -25,6 +26,9 @@ export default defineComponent({
 	methods: {
 		create() {
 			this.todo = this.form;
+		},
+		reset() {
+			this.form = { title: '', content: '', done: false } as Todo;
 		},
 	},
 	data() {
@@ -40,14 +44,25 @@ export default defineComponent({
 				if (val) return JSON.parse(val);
 				return {} as Todo;
 			},
-			set(val: Todo) {
-				const validForm = validateTodo(val);
-				if (validForm) {
-					localStorage.setItem('todo', JSON.stringify(validForm));
-					this.state = 'success';
-					return;
+			async set(val: Todo) {
+				try {
+					const validForm = validateTodo(val);
+					if (validForm) {
+						const id = await db.todos.add({
+							title: validForm.title,
+							content: validForm.content,
+							done: validForm.done,
+						});
+						if (id) {
+							this.state = 'success';
+							this.reset();
+							return;
+						}
+					}
+					this.state = 'error';
+				} catch (error) {
+					this.state = 'error';
 				}
-				this.state = 'error';
 			},
 		},
 		msg() {

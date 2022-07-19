@@ -26,6 +26,7 @@
 │   ├── App.vue
 │   ├── assets/
 │   ├── components/
+│   ├── db.ts
 │   ├── main.ts
 │   ├── registerServiceWorker.ts
 │   ├── router/
@@ -35,9 +36,10 @@
 │   └── views/
 ├── tailwind.config.js
 ├── tsconfig.json
+├── vue.config.js
 └── yarn.lock
 
-7 directories, 10 files
+7 directories, 12 files
 ```
 
 ## Libraries and Frameworks
