@@ -3,7 +3,7 @@
 		<nav>
 			<router-link to="/">Home</router-link> |
 			<router-link to="/create">Create</router-link>
-			<UiToggleTheme @click="toggleTheme" :isdark="isdark" />
+			<UiToggleTheme @click="toggleTheme" :isdark="theme == 'dark'" />
 		</nav>
 		<router-view />
 	</main>
@@ -11,18 +11,27 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { UiButton, UiToggleTheme } from './components';
+import { UiButton, UiToggleTheme } from '@/components';
+import { changeTheme } from '@/utils';
 
 export default defineComponent({
 	data() {
-		return { isdark: false };
+		return { theme: 'dark' };
+	},
+	mounted() {
+		const val = localStorage.getItem('theme');
+		val ? (this.theme = val) : (this.theme = 'dark');
+		changeTheme(this.theme);
+	},
+	watch: {
+		theme(val: string) {
+			localStorage.setItem('theme', val);
+			changeTheme(this.theme);
+		},
 	},
 	methods: {
 		toggleTheme() {
-			this.isdark = !this.isdark;
-			this.isdark
-				? document.documentElement.classList.add('dark')
-				: document.documentElement.classList.remove('dark');
+			this.theme = this.theme == 'dark' ? 'light' : 'dark';
 		},
 	},
 	components: { UiButton, UiToggleTheme },

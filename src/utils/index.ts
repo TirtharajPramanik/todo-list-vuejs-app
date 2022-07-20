@@ -1,3 +1,4 @@
 import validateTodo from './validateTodo';
+import changeTheme from './changeTheme';
 
-export { validateTodo };
+export { validateTodo, changeTheme };
