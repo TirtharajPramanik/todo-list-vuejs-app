@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="flex p-4 mb-4 text-sm rounded-lg shadow-md shadow-gray-100 dark:shadow-gray-800 transition-all ease-in-out duration-250"
+		class="flex p-4 mb-4 text-sm rounded-lg"
 		:class="alertColor"
 		role="alert"
 	>

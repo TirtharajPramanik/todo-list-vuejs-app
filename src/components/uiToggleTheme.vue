@@ -1,5 +1,10 @@
 <template>
-	<button id="theme-toggle" type="button" class="btn" aria-label="toggle theme">
+	<button
+		id="theme-toggle"
+		type="button"
+		class="btn absolute top-5 right-10"
+		aria-label="toggle theme"
+	>
 		<svg
 			id="theme-toggle-dark-icon"
 			class="w-5 h-5"
@@ -39,6 +44,6 @@ export default defineComponent({
 
 <style lang="css" scoped>
 .btn {
-	@apply text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5;
+	@apply text-gray-500 dark:text-gray-400 bg-slate-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-[#1e272c] focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5;
 }
 </style>

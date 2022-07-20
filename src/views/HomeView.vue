@@ -1,32 +1,28 @@
 <template>
-	<div class="container">
-		<h2 class="txt-color text-lg">{{ todo.title }}</h2>
-		<h3 class="txt-color">{{ todo.content }}</h3>
-		<h4 class="txt-color">{{ todo.done }}</h4>
-	</div>
+	<ul v-if="todos.length">
+		<UiTodoCard v-for="todo in todos" :data="todo" :key="todo.id" />
+	</ul>
+	<h3 v-else class="text-emerald-600 dark:text-white text-lg font-medium">
+		No Todos Yet!
+	</h3>
 </template>
 
 <script lang="ts">
-import { Todo } from '@/types';
-import { defineComponent } from 'vue';
+import { UiTodoCard } from '@/components';
+import { liveQuery } from 'dexie';
+import { useObservable } from '@vueuse/rxjs';
+import { from } from 'rxjs';
+import { db } from '@/db';
 
-export default defineComponent({
-	computed: {
-		todo() {
-			const val = localStorage.getItem('todo');
-			if (val) return JSON.parse(val);
-			return { title: 'No Todos Yet!' } as Todo;
-		},
+export default {
+	components: { UiTodoCard },
+	setup() {
+		return {
+			db,
+			todos: useObservable(from(liveQuery(() => db.todos.toArray()))),
+		};
 	},
-});
+};
 </script>
 
-<style lang="css" scoped>
-.container {
-	@apply mx-auto my-5 p-5 flex flex-col space-y-5;
-}
-
-.txt-color {
-	@apply text-purple-800 dark:text-white;
-}
-</style>
+<style lang="css" scoped></style>

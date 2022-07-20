@@ -1,10 +1,12 @@
 <template>
-	<nav>
-		<router-link to="/">Home</router-link> |
-		<router-link to="/create">Create</router-link> |
-		<UiToggleTheme @click="toggleTheme" :isdark="isdark" />
-	</nav>
-	<router-view />
+	<main class="container max-w-xl relative mx-auto">
+		<nav>
+			<router-link to="/">Home</router-link> |
+			<router-link to="/create">Create</router-link>
+			<UiToggleTheme @click="toggleTheme" :isdark="isdark" />
+		</nav>
+		<router-view />
+	</main>
 </template>
 
 <script lang="ts">
