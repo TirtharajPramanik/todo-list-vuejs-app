@@ -2,7 +2,7 @@
 	<nav>
 		<router-link to="/">Home</router-link> |
 		<router-link to="/create">Create</router-link> |
-		<UiToggleTheme @click="toggleTheme" />
+		<UiToggleTheme @click="toggleTheme" :isdark="isdark" />
 	</nav>
 	<router-view />
 </template>
@@ -42,6 +42,7 @@ body {
 
 nav {
 	padding: 30px;
+	@apply dark:text-slate-400;
 }
 
 nav a {

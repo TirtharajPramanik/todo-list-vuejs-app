@@ -3,6 +3,7 @@ node_modules
 /dist
 Dockerfile
 .dockerignore
+cert/
 
 # local env files
 .env.local
