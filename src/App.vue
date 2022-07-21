@@ -1,11 +1,17 @@
 <template>
 	<main class="container max-w-xl relative mx-auto">
 		<nav>
-			<router-link to="/">Home</router-link> |
-			<router-link to="/create">Create</router-link>
-			<UiToggleTheme @click="toggleTheme" :isdark="theme == 'dark'" />
+			<router-link @click="setSlideType('left')" to="/">Home</router-link> |
+			<router-link @click="setSlideType('right')" to="/create"
+				>Create</router-link
+			>
+			<UiToggleTheme @click="toggleTheme" :isdark="theme === 'dark'" />
 		</nav>
-		<router-view />
+		<router-view v-slot="{ Component }">
+			<transition :name="slideType" mode="out-in">
+				<component :is="Component" :key="$route.path" />
+			</transition>
+		</router-view>
 	</main>
 </template>
 
@@ -16,7 +22,7 @@ import { changeTheme } from '@/utils';
 
 export default defineComponent({
 	data() {
-		return { theme: 'dark' };
+		return { theme: 'dark', slideType: 'slideleft' };
 	},
 	mounted() {
 		const val = localStorage.getItem('theme');
@@ -31,7 +37,10 @@ export default defineComponent({
 	},
 	methods: {
 		toggleTheme() {
-			this.theme = this.theme == 'dark' ? 'light' : 'dark';
+			this.theme = this.theme === 'dark' ? 'light' : 'dark';
+		},
+		setSlideType(typ: string) {
+			if (['left', 'right'].includes(typ)) this.slideType = `slide${typ}`;
 		},
 	},
 	components: { UiButton, UiToggleTheme },
@@ -64,5 +73,29 @@ nav a {
 
 nav a.router-link-exact-active {
 	color: #42b983;
+}
+
+.slideleft-enter-active,
+.slideleft-leave-active,
+.slideright-enter-active,
+.slideright-leave-active {
+	transition: opacity 0.4s, transform 0.4s;
+}
+
+.slideleft-enter-from,
+.slideleft-leave-to,
+.slideright-enter-from,
+.slideright-leave-to {
+	opacity: 0;
+}
+
+.slideleft-enter-from,
+.slideright-leave-to {
+	transform: translateX(-30%);
+}
+
+.slideleft-leave-to,
+.slideright-enter-from {
+	transform: translateX(30%);
 }
 </style>

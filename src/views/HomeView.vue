@@ -1,10 +1,13 @@
 <template>
-	<ul v-if="todos && todos.length">
-		<UiTodoCard v-for="todo in todos" :data="todo" :key="todo.id" />
-	</ul>
-	<h3 v-else class="text-emerald-600 dark:text-white text-lg font-medium">
+	<h3
+		v-if="!todos || !todos.length"
+		class="text-emerald-600 dark:text-white text-lg font-medium"
+	>
 		No Todos Yet!
 	</h3>
+	<ul v-else>
+		<UiTodoCard v-for="todo in todos" :data="todo" :key="todo.id" />
+	</ul>
 </template>
 
 <script lang="ts">
@@ -18,7 +21,6 @@ export default {
 	components: { UiTodoCard },
 	setup() {
 		return {
-			db,
 			todos: useObservable(from(liveQuery(() => db.todos.toArray()))),
 		};
 	},

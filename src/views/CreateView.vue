@@ -4,7 +4,16 @@
 		<UiTextArea name="content" v-model="form.content">Content</UiTextArea>
 		<UiToggle v-model="form.done" />
 		<UiButton type="submit" @click="create">Create</UiButton>
-		<UiAlert v-if="state !== 'working'" :state="state">{{ msg }}</UiAlert>
+		<Transition name="bounce">
+			<UiAlert class="alert" v-if="state === 'error'" state="error">{{
+				msg
+			}}</UiAlert>
+		</Transition>
+		<Transition name="bounce">
+			<UiAlert class="alert" v-if="state === 'success'" state="success">{{
+				msg
+			}}</UiAlert>
+		</Transition>
 	</form>
 </template>
 
@@ -66,8 +75,8 @@ export default defineComponent({
 			},
 		},
 		msg() {
-			if (this.state == 'success') return 'New Todo Created! 🎉';
-			else if (this.state == 'error')
+			if (this.state === 'success') return 'New Todo Created! 🎉';
+			else if (this.state === 'error')
 				return 'Enter a Title and try submitting again! 👾';
 		},
 	},
@@ -76,6 +85,33 @@ export default defineComponent({
 
 <style lang="css" scoped>
 .create-todo-form {
-	@apply max-w-lg mx-auto p-5 rounded-md flex flex-col space-y-8;
+	@apply max-w-lg mx-auto p-5 rounded-md flex flex-col space-y-10;
+}
+
+.alert {
+	@apply shadow-gray-300 dark:shadow-gray-800 drop-shadow-lg;
+}
+
+.bounce-enter-active {
+	animation: bounce-in 0.5s;
+}
+
+.bounce-enter-from {
+	display: none;
+}
+
+.bounce-leave-to {
+	opacity: 0;
+}
+@keyframes bounce-in {
+	0% {
+		transform: scale(0);
+	}
+	50% {
+		transform: scale(1.25);
+	}
+	100% {
+		transform: scale(1);
+	}
 }
 </style>

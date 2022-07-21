@@ -18,11 +18,11 @@
 			></path>
 		</svg>
 		<span class="sr-only">Info</span>
-		<div v-if="state == 'success'">
+		<div v-if="state === 'success'">
 			<span class="font-medium">Success !&nbsp;</span>
 			<slot />
 		</div>
-		<div v-else-if="state == 'error'">
+		<div v-else-if="state === 'error'">
 			<span class="font-medium">Error !&nbsp;</span>
 			<slot />
 		</div>
@@ -34,12 +34,12 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
 	props: {
-		state: { type: String, reauired: false, default: 'success' },
+		state: { type: String, required: false, default: 'success' },
 	},
 	computed: {
 		alertColor() {
-			if (this.state == 'success') return 'green';
-			else if (this.state == 'error') return 'red';
+			if (this.state === 'success') return 'green';
+			else if (this.state === 'error') return 'red';
 		},
 	},
 });
