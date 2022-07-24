@@ -33,8 +33,25 @@ import { defineComponent } from 'vue';
 export default defineComponent({
 	components: { UiTextInput, UiTextArea, UiButton, UiToggle, UiAlert },
 	methods: {
-		create() {
-			this.todo = this.form;
+		async create() {
+			try {
+				const validForm = validateTodo(this.form);
+				if (validForm) {
+					const id = await db.todos.add({
+						title: validForm.title,
+						content: validForm.content,
+						done: validForm.done,
+					});
+					if (id) {
+						this.state = 'success';
+						this.reset();
+						return;
+					}
+				}
+				this.state = 'error';
+			} catch (error) {
+				this.state = 'error';
+			}
 		},
 		reset() {
 			this.form = { title: '', content: '', done: false } as Todo;
@@ -47,33 +64,6 @@ export default defineComponent({
 		};
 	},
 	computed: {
-		todo: {
-			get() {
-				const val = localStorage.getItem('todo');
-				if (val) return JSON.parse(val);
-				return {} as Todo;
-			},
-			async set(val: Todo) {
-				try {
-					const validForm = validateTodo(val);
-					if (validForm) {
-						const id = await db.todos.add({
-							title: validForm.title,
-							content: validForm.content,
-							done: validForm.done,
-						});
-						if (id) {
-							this.state = 'success';
-							this.reset();
-							return;
-						}
-					}
-					this.state = 'error';
-				} catch (error) {
-					this.state = 'error';
-				}
-			},
-		},
 		msg() {
 			if (this.state === 'success') return 'New Todo Created! 🎉';
 			else if (this.state === 'error')

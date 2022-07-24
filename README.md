@@ -4,13 +4,18 @@
 
 ##### Create Todo
 
-<img alt="mobile create dark" src="demo/mobile_create_dark.png" width="250px"/>
+<img alt="mobile create dark" src="demo/mobile_create_dark.png" width="250px" />
+
+##### View Todos
+
+<img alt="mobile view dark" src="demo/mobile_view_dark.png" width="250px" />
 
 ## Table of Content
 
 - [Todo List - Vuejs Offline PWA](#todo-list---vuejs-offline-pwa)
   - [Demo Pictures](#demo-pictures)
         - [Create Todo](#create-todo)
+        - [View Todos](#view-todos)
   - [Table of Content](#table-of-content)
   - [Project Structure](#project-structure)
   - [Libraries and Frameworks](#libraries-and-frameworks)
@@ -53,6 +58,7 @@
 | Tailwindcss | A utility-first CSS framework packed with classes like `flex`, `pt-4`, `text-center` and `rotate-90` that can be composed to build any design, directly in your markup. |
 | Flowbite    | Flowbite is an ecosystem built on top of Tailwind CSS including a component library, block sections, a Figma design system and other resources.                         |
 | Dexie       | A Minimalistic Wrapper for IndexedDB, a client-side database.                                                                                                           |
+| HeroIcons   | Beautiful hand-crafted SVG icons, by the makers of Tailwind CSS.                                                                                                        |
 
 ## Project setup
 

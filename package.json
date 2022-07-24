@@ -7,6 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@heroicons/vue": "^1.0.6",
     "@vueuse/rxjs": "^8.9.4",
     "dexie": "^3.2.2",
     "flowbite": "^1.4.7",

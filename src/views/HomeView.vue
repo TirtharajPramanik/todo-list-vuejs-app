@@ -5,7 +5,7 @@
 	>
 		No Todos Yet!
 	</h3>
-	<ul v-else>
+	<ul v-else class="px-4 py-6 space-y-8">
 		<UiTodoCard v-for="todo in todos" :data="todo" :key="todo.id" />
 	</ul>
 </template>
