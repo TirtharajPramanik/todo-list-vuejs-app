@@ -1,6 +1,6 @@
 <template>
 	<form @submit.prevent class="create-todo-form">
-		<UiTextInput name="title" autofocus v-model="form.title">Title</UiTextInput>
+		<UiTextInput name="title" v-model="form.title">Title</UiTextInput>
 		<UiTextArea name="content" v-model="form.content">Content</UiTextArea>
 		<UiToggle v-model="form.done" />
 		<UiButton type="submit" @click="create">Create</UiButton>

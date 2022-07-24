@@ -1,12 +1,12 @@
 <template>
-	<li class="container group hover:transition duration-500">
-		<h2 class="title">{{ data.title }}</h2>
-		<h3 class="content">{{ data.content }}</h3>
+	<li class="container group trans">
+		<h2 class="title trans">{{ data.title }}</h2>
+		<h3 class="content trans" v-if="data.content">{{ data.content }}</h3>
 		<div class="flex justify-around">
-			<PencilAltIcon class="edt-icn" />
-			<h4 v-if="data.done" class="done">Completed</h4>
-			<h4 v-else class="undone">Incomplete</h4>
-			<TrashIcon class="dlt-icn" />
+			<PencilAltIcon class="edt-icn trans-30" />
+			<h4 v-if="data.done" class="done trans-30">Completed</h4>
+			<h4 v-else class="undone trans-30">Incomplete</h4>
+			<TrashIcon class="dlt-icn trans-30" />
 		</div>
 	</li>
 </template>
@@ -24,23 +24,30 @@ export default defineComponent({
 </script>
 
 <style lang="css" scoped>
+.trans {
+	@apply transition duration-500;
+}
+.trans-30 {
+	@apply transition duration-300;
+}
 .container {
 	@apply mx-auto px-4 py-6 flex flex-col space-y-12 max-w-md;
 	@apply rounded-md;
 	@apply shadow-[0px_8px_24px_rgba(149,157,165,0.2)] dark:shadow-[0px_8px_24px_rgba(0,0,0,0.2)];
-	@apply hover:shadow-[0px_16px_48px_rgba(149,157,165,0.2)] dark:hover:shadow-[0px_16px_48px_rgba(0,0,0,0.3)];
+	@apply hover:shadow-[0px_24px_48px_rgba(143,167,163,0.3)] dark:hover:shadow-[0px_24px_48px_rgba(0,0,0,0.3)];
 }
 .title {
-	@apply text-xl group-hover:text-lg text-emerald-600 dark:text-white;
-	@apply group-hover:text-emerald-400 dark:group-hover:text-violet-400;
+	@apply text-xl group-hover:scale-90 text-emerald-600 dark:text-white;
+	@apply group-hover:text-emerald-400;
 }
 .content {
-	@apply text-lg group-hover:text-xl  text-purple-400  dark:text-indigo-300;
-	@apply group-hover:text-purple-600 dark:group-hover:text-fuchsia-400;
+	@apply text-lg group-hover:scale-110  text-purple-400;
+	@apply group-hover:text-purple-600 dark:group-hover:text-pink-400;
 }
 .done,
 .undone {
 	@apply text-sm;
+	@apply hover:scale-125;
 }
 .done {
 	@apply text-cyan-400 group-hover:text-slate-400;
@@ -50,7 +57,7 @@ export default defineComponent({
 }
 .edt-icn,
 .dlt-icn {
-	@apply w-5 h-5 font-thin;
+	@apply w-5 h-5 font-thin hover:scale-125;
 }
 .edt-icn {
 	@apply text-cyan-300;
