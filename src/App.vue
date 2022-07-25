@@ -49,7 +49,7 @@ export default defineComponent({
 
 <style>
 body {
-	@apply bg-white dark:bg-slate-700;
+	@apply bg-white dark:bg-[rgb(40,50,60)];
 }
 
 #app {
