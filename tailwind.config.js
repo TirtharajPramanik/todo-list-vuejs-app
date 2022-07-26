@@ -2,7 +2,7 @@
 module.exports = {
 	content: ['./src/**/*.vue', './node_modules/flowbite/**/*.js'],
 	theme: {
-		extend: {},
+		extend: { screens: { xs: '22rem' } },
 	},
 	plugins: [require('flowbite/plugin')],
 	darkMode: 'class',

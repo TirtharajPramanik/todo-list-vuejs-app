@@ -5,6 +5,7 @@ import UiToggle from './uiToggle.vue';
 import UiAlert from './uiAlert.vue';
 import UiToggleTheme from './uiToggleTheme.vue';
 import UiTodoCard from './uiTodoCard.vue';
+import UiToast from './uiToast.vue';
 
 export {
 	UiButton,
@@ -14,4 +15,5 @@ export {
 	UiAlert,
 	UiToggleTheme,
 	UiTodoCard,
+	UiToast,
 };
