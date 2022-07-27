@@ -18,10 +18,10 @@
 		<span class="sr-only">Warning icon</span>
 	</div>
 	<div class="ml-3 text-sm font-normal">Confirm Incompletion</div>
-	<a
+	<span
 		class="ml-auto text-sm font-medium text-amber-600 p-1.5 hover:bg-amber-100 rounded-lg dark:text-amber-500 dark:hover:bg-gray-700"
-		href="#"
-		>Incomplete</a
+		@click="$emit('incomplete')"
+		>Incomplete</span
 	>
 </template>
 

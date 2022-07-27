@@ -5,9 +5,15 @@
 		role="alert"
 		v-if="show"
 	>
-		<completeToast v-if="mode === 'complete'" />
-		<incompleteToast v-else-if="mode === 'incomplete'" />
-		<deleteToast v-else-if="mode === 'delete'" @delete="$emit('delete')" />
+		<completeToast
+			v-if="mode === 'complete'"
+			@complete="$emit('finish', true)"
+		/>
+		<incompleteToast
+			v-else-if="mode === 'incomplete'"
+			@incomplete="$emit('finish', false)"
+		/>
+		<deleteToast v-else-if="mode === 'delete'" @delete="$emit('trash')" />
 
 		<button
 			type="button"

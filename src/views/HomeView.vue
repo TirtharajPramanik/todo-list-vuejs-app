@@ -12,13 +12,20 @@
 					v-for="todo in todos"
 					:data="todo"
 					:key="todo.id"
-					@trash="todo.id && remove(todo.id)"
+					@trash="todo.id && toast('delete', todo.id)"
+					@finish="todo.id && toast($event, todo.id)"
 					@pencil="todo.id && edit(todo.id)"
-					@finish="todo.id && toggle($event, todo.id)"
 				/>
 			</TransitionGroup>
 		</ul>
-		<UiToast :mode="modal" @close="modal = 'none'" @delete="removable = true" />
+		<Transition name="bounce">
+			<UiToast
+				:mode="modal"
+				@close="modal = 'none'"
+				@trash="remove()"
+				@finish="toggle"
+			/>
+		</Transition>
 	</div>
 </template>
 
@@ -32,32 +39,33 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
 	data() {
-		return { modal: 'none', removable: false };
+		return { modal: 'none', selected: 0 };
 	},
 	components: { UiTodoCard, UiToast },
 	methods: {
-		remove(id: number) {
-			// alert('Delete this todo?');
-			this.modal = 'delete';
-			setTimeout(() => {
-				this.removable && db.todos.delete(id);
-				this.modal = 'none';
-				this.removable = false;
-			}, 2000);
+		toast(mode: string, id: number) {
+			this.selected = id;
+			if (['complete', 'incomplete', 'delete'].includes(mode)) {
+				this.modal = mode;
+			}
+		},
+		remove() {
+			this.selected && db.todos.delete(this.selected);
+			this.modal = 'none';
+			this.selected = 0;
 		},
 		edit(id: number) {
 			db.todos.update(id, { content: 'content' });
 		},
-		toggle(eve: any, id: number) {
-			// eve
-			// 	? alert('Completed this todo?')
-			// 	: alert('Mark this todo as Incomplete?');
-			db.todos.update(id, { done: eve });
+		toggle(eve: boolean) {
+			db.todos.update(this.selected, { done: eve });
+			this.modal = 'none';
+			this.selected = 0;
 		},
 	},
 	setup() {
 		return {
-			todos: useObservable(from(liveQuery(() => db.todos.toArray()))),
+			todos: useObservable(from(liveQuery(() => db.todos.reverse().toArray()))),
 		};
 	},
 });
@@ -72,14 +80,25 @@ export default defineComponent({
 .list-leave-to {
 	@apply opacity-0 -translate-y-10 translate-x-36;
 }
-</style>
-<!-- 
 
-methods: {
-		toggle() {
-			this.show = !this.show;
-		},
-		accept() {
-			this.toggle();
-		},
-	}, -->
+.bounce-enter-active {
+	animation: bounce-in 0.7s;
+}
+.bounce-enter-from {
+	display: none;
+}
+.bounce-leave-to {
+	animation: bounce-in reverse 0.7s;
+}
+@keyframes bounce-in {
+	0% {
+		transform: scale(0);
+	}
+	50% {
+		transform: scale(1.25);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+</style>

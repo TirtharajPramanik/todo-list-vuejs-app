@@ -7,11 +7,11 @@
 			<h4
 				v-if="data.done"
 				class="done trans-30"
-				@click="$emit('finish', false)"
+				@click="$emit('finish', 'incomplete')"
 			>
 				Completed
 			</h4>
-			<h4 v-else class="undone trans-30" @click="$emit('finish', true)">
+			<h4 v-else class="undone trans-30" @click="$emit('finish', 'complete')">
 				Incomplete
 			</h4>
 			<TrashIcon class="dlt-icn trans-30" @click="$emit('trash')" />

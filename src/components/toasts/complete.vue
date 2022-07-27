@@ -19,10 +19,10 @@
 	</div>
 
 	<div class="ml-3 text-sm font-normal">Confirm Completion</div>
-	<a
+	<span
 		class="ml-auto text-sm font-medium text-emerald-600 p-1.5 hover:bg-emerald-100 rounded-lg dark:text-emerald-500 dark:hover:bg-gray-700"
-		href="#"
-		>Complete</a
+		@click="$emit('complete')"
+		>Complete</span
 	>
 </template>
 
