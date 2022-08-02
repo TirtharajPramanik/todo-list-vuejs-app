@@ -14,7 +14,7 @@
 					:key="todo.id"
 					@trash="todo.id && toast('delete', todo.id)"
 					@finish="todo.id && toast($event, todo.id)"
-					@pencil="todo.id && edit(todo.id)"
+					@pencil="todo.id && toast('edit', todo.id)"
 				/>
 			</TransitionGroup>
 		</ul>
@@ -22,8 +22,9 @@
 			<UiToast
 				:mode="modal"
 				@close="modal = 'none'"
-				@trash="remove()"
+				@trash="remove"
 				@finish="toggle"
+				@pencil="edit"
 			/>
 		</Transition>
 	</div>
@@ -45,20 +46,23 @@ export default defineComponent({
 	methods: {
 		toast(mode: string, id: number) {
 			this.selected = id;
-			if (['complete', 'incomplete', 'delete'].includes(mode)) {
+			if (['complete', 'incomplete', 'delete', 'edit'].includes(mode)) {
 				this.modal = mode;
 			}
 		},
 		remove() {
 			this.selected && db.todos.delete(this.selected);
-			this.modal = 'none';
-			this.selected = 0;
+			this.reset();
 		},
-		edit(id: number) {
-			db.todos.update(id, { content: 'content' });
+		edit() {
+			this.selected && db.todos.update(this.selected, { content: ' Hatella' });
+			this.reset();
 		},
 		toggle(eve: boolean) {
 			db.todos.update(this.selected, { done: eve });
+			this.reset();
+		},
+		reset() {
 			this.modal = 'none';
 			this.selected = 0;
 		},

@@ -14,6 +14,7 @@
 			@incomplete="$emit('finish', false)"
 		/>
 		<deleteToast v-else-if="mode === 'delete'" @delete="$emit('trash')" />
+		<editToast v-else-if="mode === 'edit'" @edit="$emit('pencil')" />
 
 		<button
 			type="button"
@@ -42,13 +43,18 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { completeToast, incompleteToast, deleteToast } from './toasts';
+import {
+	completeToast,
+	incompleteToast,
+	deleteToast,
+	editToast,
+} from './toasts';
 export default defineComponent({
-	components: { completeToast, incompleteToast, deleteToast },
+	components: { completeToast, incompleteToast, deleteToast, editToast },
 	props: { mode: { type: String, required: false, default: 'none' } },
 	computed: {
 		show() {
-			return ['complete', 'incomplete', 'delete'].includes(this.mode);
+			return ['complete', 'incomplete', 'delete', 'edit'].includes(this.mode);
 		},
 	},
 });
