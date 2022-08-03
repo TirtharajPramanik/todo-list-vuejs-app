@@ -12,6 +12,7 @@
 					v-for="todo in todos"
 					:data="todo"
 					:key="todo.id"
+					:editing="modal === 'edit' && selected === todo.id"
 					@trash="todo.id && toast('delete', todo.id)"
 					@finish="todo.id && toast($event, todo.id)"
 					@pencil="todo.id && toast('edit', todo.id)"
@@ -40,7 +41,11 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
 	data() {
-		return { modal: 'none', selected: 0 };
+		return {
+			modal: 'none',
+			selected: 0,
+			todo: { title: 'hello', content: 'meet ya tomoro!😜' },
+		};
 	},
 	components: { UiTodoCard, UiToast },
 	methods: {
@@ -55,7 +60,11 @@ export default defineComponent({
 			this.reset();
 		},
 		edit() {
-			this.selected && db.todos.update(this.selected, { content: ' Hatella' });
+			this.selected &&
+				db.todos.update(this.selected, {
+					title: this.todo.title,
+					content: this.todo.content,
+				});
 			this.reset();
 		},
 		toggle(eve: boolean) {
@@ -82,7 +91,8 @@ export default defineComponent({
 }
 .list-enter,
 .list-leave-to {
-	@apply opacity-0 -translate-y-10 translate-x-36;
+	@apply opacity-0 translate-x-36;
+	/* -translate-y-10 */
 }
 
 .bounce-enter-active {

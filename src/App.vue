@@ -55,7 +55,8 @@ export default defineComponent({
 
 <style>
 body {
-	@apply bg-white dark:bg-[rgb(40,50,60)];
+	@apply bg-white dark:bg-gray-900;
+	/* dark:bg-[rgb(40,50,60)]; */
 }
 
 #app {
