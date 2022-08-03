@@ -1,7 +1,7 @@
 <template>
 	<form @submit.prevent class="create-todo-form">
 		<UiTextInput name="title" v-model="form.title">Title</UiTextInput>
-		<UiTextArea name="content" v-model="form.content">Content</UiTextArea>
+		<UiTextArea name="content" v-model="form.content">Description</UiTextArea>
 		<UiToggle v-model="form.done" />
 		<UiButton type="submit" @click="create">Create</UiButton>
 		<Transition name="bounce">
@@ -67,7 +67,7 @@ export default defineComponent({
 		msg() {
 			if (this.state === 'success') return 'New Todo Created! 🎉';
 			else if (this.state === 'error')
-				return 'Enter a Title and try submitting again! 👾';
+				return 'Enter a Title or a Description and try submitting again! 👾';
 		},
 	},
 });

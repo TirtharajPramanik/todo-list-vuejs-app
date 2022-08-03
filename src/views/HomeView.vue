@@ -15,7 +15,9 @@
 					:editing="modal === 'edit' && selected === todo.id"
 					@trash="todo.id && toast('delete', todo.id)"
 					@finish="todo.id && toast($event, todo.id)"
-					@pencil="todo.id && toast('edit', todo.id)"
+					@pencil="todo.id && toast('edit', $event)"
+					@title="title"
+					@content="content"
 				/>
 			</TransitionGroup>
 		</ul>
@@ -38,19 +40,26 @@ import { useObservable } from '@vueuse/rxjs';
 import { from } from 'rxjs';
 import { db } from '@/db';
 import { defineComponent } from 'vue';
+import { Todo } from '@/types';
+import { validateTodo } from '@/utils';
 
 export default defineComponent({
 	data() {
 		return {
 			modal: 'none',
 			selected: 0,
-			todo: { title: 'hello', content: 'meet ya tomoro!😜' },
+			todo: { title: '', content: '' },
 		};
 	},
 	components: { UiTodoCard, UiToast },
 	methods: {
-		toast(mode: string, id: number) {
-			this.selected = id;
+		toast(mode: string, id: number | Todo) {
+			if (typeof id === 'number') this.selected = id;
+			else {
+				this.selected = id.id as number;
+				this.todo.title = id.title as string;
+				this.todo.content = id.content as string;
+			}
 			if (['complete', 'incomplete', 'delete', 'edit'].includes(mode)) {
 				this.modal = mode;
 			}
@@ -60,12 +69,15 @@ export default defineComponent({
 			this.reset();
 		},
 		edit() {
-			this.selected &&
-				db.todos.update(this.selected, {
-					title: this.todo.title,
-					content: this.todo.content,
-				});
-			this.reset();
+			const todo = validateTodo(this.todo);
+			if (todo) {
+				this.selected &&
+					db.todos.update(this.selected, {
+						title: todo.title,
+						content: todo.content,
+					});
+				this.reset();
+			}
 		},
 		toggle(eve: boolean) {
 			db.todos.update(this.selected, { done: eve });
@@ -74,6 +86,12 @@ export default defineComponent({
 		reset() {
 			this.modal = 'none';
 			this.selected = 0;
+		},
+		title(ev: string, todo: Todo) {
+			this.todo.title = ev;
+		},
+		content(ev: string, todo: Todo) {
+			this.todo.content = ev;
 		},
 	},
 	setup() {

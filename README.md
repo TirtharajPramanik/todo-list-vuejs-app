@@ -4,11 +4,15 @@
 
 ##### Create Todo
 
-<img alt="mobile create dark" src="demo/mobile_create_dark.png" width="250px" />
+<img alt="mobile create light" src="demo/mobile_create_light.png" width="250px" />
 
 ##### View Todos
 
-<img alt="mobile view dark" src="demo/mobile_view_dark.png" width="250px" />
+<img alt="mobile view light" src="demo/mobile_view_light.png" width="250px" />
+
+##### Edit Todo
+
+<img alt="mobile edit light" src="demo/mobile_edit_light.png" width="250px" />
 
 ## Table of Content
 
@@ -16,6 +20,7 @@
   - [Demo Pictures](#demo-pictures)
         - [Create Todo](#create-todo)
         - [View Todos](#view-todos)
+        - [Edit Todos](#edit-todos)
   - [Table of Content](#table-of-content)
   - [Project Structure](#project-structure)
   - [Libraries and Frameworks](#libraries-and-frameworks)
@@ -26,28 +31,55 @@
 ## Project Structure
 
 ```sh
-./
+.
 ├── README.md
 ├── package.json
 ├── postcss.config.js
-├── src/
+├── src
 │   ├── App.vue
-│   ├── assets/
-│   ├── components/
+│   ├── assets
+│   │   ├── base.css
+│   │   └── logo.png
+│   ├── components
+│   │   ├── index.ts
+│   │   ├── toasts
+│   │   │   ├── complete.vue
+│   │   │   ├── delete.vue
+│   │   │   ├── edit.vue
+│   │   │   ├── incomplete.vue
+│   │   │   └── index.ts
+│   │   ├── uiAlert.vue
+│   │   ├── uiButton.vue
+│   │   ├── uiTextArea.vue
+│   │   ├── uiTextInput.vue
+│   │   ├── uiToast.vue
+│   │   ├── uiTodoCard.vue
+│   │   ├── uiToggle.vue
+│   │   └── uiToggleTheme.vue
 │   ├── db.ts
 │   ├── main.ts
 │   ├── registerServiceWorker.ts
-│   ├── router/
+│   ├── router
+│   │   └── index.ts
 │   ├── shims-vue.d.ts
-│   ├── types/
-│   ├── utils/
-│   └── views/
+│   ├── types
+│   │   ├── Alert.ts
+│   │   ├── State.ts
+│   │   ├── Todo.ts
+│   │   └── index.ts
+│   ├── utils
+│   │   ├── changeTheme.ts
+│   │   ├── index.ts
+│   │   └── validateTodo.ts
+│   └── views
+│       ├── CreateView.vue
+│       └── HomeView.vue
 ├── tailwind.config.js
 ├── tsconfig.json
 ├── vue.config.js
 └── yarn.lock
 
-7 directories, 12 files
+8 directories, 38 files
 ```
 
 ## Libraries and Frameworks

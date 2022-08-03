@@ -1,9 +1,19 @@
 <template>
-	<li class="container group trans" :class="data.done && 'fade'">
-		<Transition name="fade" mode="out-in">
+	<li class="container group trans" :class="data.done && !editing && 'fade'">
+		<Transition :name="editing ? 'slideright' : 'slideleft'" mode="out-in">
 			<div class="space-y-8 trans" v-if="editing">
-				<UiTextInput name="title" v-model="title">Title</UiTextInput>
-				<UiTextArea name="content" v-model="content">Content</UiTextArea>
+				<UiTextInput
+					name="title"
+					v-model="title"
+					@change="$emit('title', title)"
+					>Title</UiTextInput
+				>
+				<UiTextArea
+					name="content"
+					v-model="content"
+					@change="$emit('content', content)"
+					>Content</UiTextArea
+				>
 			</div>
 			<div class="space-y-8 trans" v-else>
 				<h2 class="title trans">{{ data.title }}</h2>
@@ -11,7 +21,10 @@
 			</div>
 		</Transition>
 		<div class="flex justify-around">
-			<PencilAltIcon class="edt-icn trans-30" @click="$emit('pencil')" />
+			<PencilAltIcon
+				class="edt-icn trans-30"
+				@click="$emit('pencil', { id: data.id, title, content })"
+			/>
 			<h4
 				v-if="data.done"
 				class="done trans-30"
@@ -45,14 +58,6 @@ export default defineComponent({
 </script>
 
 <style lang="css" scoped>
-.fade-enter-from,
-.fade-leave-to {
-	opacity: 0;
-}
-.fade-enter-active,
-.fade-leave-active {
-	@apply transition ease-in-out;
-}
 .fade {
 	@apply opacity-50 hover:opacity-100;
 	/* @apply bg-gray-50 dark:bg-gray-900; */
@@ -98,5 +103,29 @@ export default defineComponent({
 }
 .dlt-icn {
 	@apply text-rose-300;
+}
+
+.slideleft-enter-active,
+.slideleft-leave-active,
+.slideright-enter-active,
+.slideright-leave-active {
+	transition: opacity 0.4s, transform 0.4s;
+}
+
+.slideleft-enter-from,
+.slideleft-leave-to,
+.slideright-enter-from,
+.slideright-leave-to {
+	opacity: 0;
+}
+
+.slideleft-enter-from,
+.slideright-leave-to {
+	transform: translateX(-30%);
+}
+
+.slideleft-leave-to,
+.slideright-enter-from {
+	transform: translateX(30%);
 }
 </style>
